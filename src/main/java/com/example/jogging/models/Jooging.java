@@ -17,11 +17,13 @@ import java.util.Date;
 @Setter
 public class Jooging implements Serializable {
 
+    public Jooging() {
+    }
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn (name = "jogging_id", nullable = false)
     private User user;

@@ -18,6 +18,9 @@ import java.util.List;
 @Setter
 public class User implements Serializable {
 
+    public User() {
+    }
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,8 +36,7 @@ public class User implements Serializable {
     @CreatedDate
     private Date createDate;
 
-    @Column
-    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Jooging> joogingList;
 
     @Override
