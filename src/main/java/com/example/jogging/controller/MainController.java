@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by VAfonin on 26.03.2018.
  */
 @RestController
-@RequestMapping(value = "/main")
+@RequestMapping(value = "/api")
 public class MainController {
 
     private static final String ADD_USERS = "/add_users";
