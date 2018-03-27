@@ -1,5 +1,6 @@
 package com.example.jogging.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -31,11 +32,12 @@ public class User implements Serializable {
     @Column (name = "password")
     private String password;
 
-    @Column (nullable = false, updatable = false)
+    @Column (name = "create",nullable = false, updatable = false)
     @Temporal (value = TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createDate;
 
+    @JsonIgnore
     @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Jooging> joogingList;
 

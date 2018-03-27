@@ -1,37 +1,44 @@
 package com.example.jogging.controller;
 
 import com.example.jogging.models.User;
+import com.example.jogging.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by VAfonin on 26.03.2018.
  */
 @RestController
-@RequestMapping(value = Url.CONTROLLER_USER)
+@RequestMapping (value = Url.CONTROLLER_USER)
 public class UserController {
 
-    @RequestMapping(value = Url.POST_USER, method = RequestMethod.GET)
-    public User addUser(@RequestBody User user) {
-        return user;
+    @Autowired
+    private UserService service;
+
+    @RequestMapping (value = Url.POST_USER, method = RequestMethod.POST)
+    public User addUser (@RequestBody User user) {
+        return service.addUser (user);
     }
 
-    @RequestMapping(value = Url.DELETE_USER_BY_ID, method = RequestMethod.DELETE)
-    public void removeUser(@PathVariable("id") Integer id) {
-        System.out.println ();
+    @RequestMapping (value = Url.DELETE_USER_BY_ID, method = RequestMethod.DELETE)
+    public void removeUser (@PathVariable ("id") Integer id) {
+        service.removeUser (id);
     }
 
-    @RequestMapping(value = Url.PUT_USER_BY_ID, method = RequestMethod.PUT)
-    public void updateUser(@RequestBody User user, @PathVariable("id") Integer id) {
-        System.out.println ();
+    @RequestMapping (value = Url.PUT_USER_BY_ID, method = RequestMethod.PUT)
+    public void updateUser (@RequestBody User user, @PathVariable ("id") Integer id) {
+        service.updateUser (id, user);
     }
 
-    @RequestMapping(value = Url.GET_USER_BY_ID, method = RequestMethod.GET)
-    public User getUser(@PathVariable("id") Integer id) {
-        return null;
+    @RequestMapping (value = Url.GET_USER_BY_ID, method = RequestMethod.GET)
+    public User getUser (@PathVariable ("id") Integer id) {
+        return service.getUser (id);
     }
 
-    @RequestMapping(value = Url.GET_USERS, method = RequestMethod.GET)
-    public User getUsers() {
-        return null;
+    @RequestMapping (value = Url.GET_USERS, method = RequestMethod.GET)
+    public List<User> getUsers () {
+        return service.getUsers ();
     }
 }
