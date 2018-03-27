@@ -4,6 +4,9 @@ import com.example.jogging.dao.UserRepository;
 import com.example.jogging.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     @Override
+    @Transactional (propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public User addUser (User user) {
         return repository.save (user);
     }
@@ -28,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser (Integer id, User userDetails) {
-        User user  = repository.findById (id).orElseGet (User::new);
+        User user = repository.findById (id).orElseGet (User::new);
         user.setLoggin (userDetails.getLoggin ());
         user.setPassword (userDetails.getPassword ());
         user.setJoogingList (userDetails.getJoogingList ());
@@ -37,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser (Integer id) {
-        return repository.findById (id).get();
+        return repository.findById (id).get ();
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.example.jogging.controller;
 
+import com.example.jogging.models.Test;
 import com.example.jogging.models.User;
 import com.example.jogging.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,10 @@ public class UserController {
 
     @Autowired
     private UserService service;
+
+//    @Autowired
+//    @Qualifier (value = "test")
+    private JpaRepository testservice;
 
     @RequestMapping (value = Url.POST_USER, method = RequestMethod.POST)
     public User addUser (@RequestBody User user) {
@@ -40,5 +46,12 @@ public class UserController {
     @RequestMapping (value = Url.GET_USERS, method = RequestMethod.GET)
     public List<User> getUsers () {
         return service.getUsers ();
+    }
+
+    @RequestMapping (value = "/test", method = RequestMethod.GET)
+    public void test () {
+        Test test = new Test ();
+        test.setString ("test");
+        testservice.save (test);
     }
 }
