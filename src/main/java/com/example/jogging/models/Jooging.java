@@ -2,11 +2,9 @@ package com.example.jogging.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by VAfonin on 26.03.2018.
@@ -17,34 +15,37 @@ import java.util.Date;
 @Setter
 public class Jooging implements Serializable {
 
-    public Jooging() {
+    public Jooging () {
     }
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn (name = "jogging_id", nullable = false)
     private User user;
 
-    @Column
-    @Temporal (TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createJooging;
+    @Column (name = "name")
+    private String name;
 
-    @Column
-    @Temporal (TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date endJooging;
+//    @Column
+//    @Temporal (TemporalType.TIMESTAMP)
+//    @CreatedDate
+//    private Date createJooging;
+//
+//    @Column
+//    @Temporal (TemporalType.TIMESTAMP)
+//    @CreatedDate
+//    private Date endJooging;
 
     @Override
     public String toString () {
         return "Jooging{" +
                 "id=" + id +
                 ", user=" + user +
-                ", createJooging=" + createJooging +
-                ", endJooging=" + endJooging +
+                ", createJooging=" +
+                ", endJooging=" +
                 '}';
     }
 }

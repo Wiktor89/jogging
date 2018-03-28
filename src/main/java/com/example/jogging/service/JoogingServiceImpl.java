@@ -29,8 +29,8 @@ public class JoogingServiceImpl implements JoogingService {
     @Override
     public void updateJooging (Jooging joogingDetails, Integer id) {
         Jooging jooging = repository.findById (id).orElseGet (Jooging::new);
-        jooging.setCreateJooging (joogingDetails.getCreateJooging ());
-        jooging.setEndJooging (joogingDetails.getEndJooging ());
+//        jooging.setCreateJooging (joogingDetails.getCreateJooging ());
+//        jooging.setEndJooging (joogingDetails.getEndJooging ());
         repository.save (jooging);
     }
 
