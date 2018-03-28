@@ -1,6 +1,5 @@
 package com.example.jogging.controller;
 
-import com.example.jogging.models.Test;
 import com.example.jogging.models.User;
 import com.example.jogging.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +47,4 @@ public class UserController {
         return service.getUsers ();
     }
 
-    @RequestMapping (value = "/test", method = RequestMethod.GET)
-    public void test () {
-        Test test = new Test ();
-        test.setString ("test");
-        testservice.save (test);
-    }
 }
